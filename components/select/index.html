@@ -412,6 +412,154 @@
     </div>
 
     <!-- ==========================================
+         Static Trigger Icon (آیکن ثابت در trigger)
+         ========================================== -->
+    <h2>Static Icon — آیکن ثابت</h2>
+    <p class="desc">آیکن ثابت در trigger نمایش داده می‌شود و با تغییر انتخاب تغییر نمی‌کند. آیتم‌های dropdown بدون آیکن هستند.</p>
+
+    <div class="demo-row">
+      <div class="demo-col">
+        <label>پیش‌فرض</label>
+        <div class="select select--icon" data-type="icon" data-placeholder="وضعیت">
+          <input type="hidden" name="status_static" />
+          <button class="select__trigger" type="button">
+            <span class="select__trigger-icon select__trigger-icon--static">
+              <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.5"/><path d="M7 10L9 12L13 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="select__trigger-divider select__trigger-divider--static"></span>
+            <span class="select__value">وضعیت</span>
+          </button>
+          <div class="select__dropdown">
+            <ul class="select__list" role="listbox">
+              <li class="select__item" data-value="active">فعال</li>
+              <li class="select__item" data-value="inactive">غیرفعال</li>
+              <li class="select__item" data-value="pending">در انتظار</li>
+              <li class="select__item" data-value="archived">آرشیو</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-col">
+        <label>از قبل انتخاب شده</label>
+        <div class="select select--icon" data-type="icon" data-placeholder="وضعیت">
+          <input type="hidden" name="status_static_preset" />
+          <button class="select__trigger" type="button">
+            <span class="select__trigger-icon select__trigger-icon--static">
+              <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.5"/><path d="M7 10L9 12L13 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="select__trigger-divider select__trigger-divider--static"></span>
+            <span class="select__value">وضعیت</span>
+          </button>
+          <div class="select__dropdown">
+            <ul class="select__list" role="listbox">
+              <li class="select__item select__item--selected" data-value="active">فعال</li>
+              <li class="select__item" data-value="inactive">غیرفعال</li>
+              <li class="select__item" data-value="pending">در انتظار</li>
+              <li class="select__item" data-value="archived">آرشیو</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-col">
+        <label>غیرفعال (Disabled)</label>
+        <div class="select select--icon select--disabled" data-type="icon" data-placeholder="وضعیت">
+          <button class="select__trigger" type="button" disabled>
+            <span class="select__trigger-icon select__trigger-icon--static">
+              <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.5"/><path d="M7 10L9 12L13 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="select__trigger-divider select__trigger-divider--static"></span>
+            <span class="select__value">وضعیت</span>
+          </button>
+          <div class="select__dropdown">
+            <ul class="select__list" role="listbox">
+              <li class="select__item" data-value="active">فعال</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         Icon + Multiple Select
+         ========================================== -->
+    <h2>Multiple + Icon — آیکن‌دار چندگانه</h2>
+    <p class="desc">آیکن به عنوان یک افزونه اختیاری روی هر نوع select قابل استفاده است — کافیست <code>.select__item-icon</code> را داخل آیتم‌ها قرار دهید.</p>
+
+    <div class="demo-row">
+      <div class="demo-col">
+        <label>Multiple + Icons</label>
+        <div class="select select--multiple" data-type="multiple" data-placeholder="اولویت را انتخاب کنید">
+          <input type="hidden" name="priority_multi" />
+          <button class="select__trigger" type="button">
+            <span class="select__value">اولویت را انتخاب کنید</span>
+          </button>
+          <div class="select__dropdown">
+            <ul class="select__list" role="listbox" aria-multiselectable="true">
+              <li class="select__item" data-value="critical">
+                <span class="select__item-icon">
+                  <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 7V10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="10" cy="13" r="0.75" fill="currentColor"/></svg>
+                </span>
+                بحرانی
+              </li>
+              <li class="select__item" data-value="high">
+                <span class="select__item-icon">
+                  <svg viewBox="0 0 20 20" fill="none"><path d="M10 3.5L17 16.5H3L10 3.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                </span>
+                بالا
+              </li>
+              <li class="select__item select__item--selected" data-value="medium">
+                <span class="select__item-icon">
+                  <svg viewBox="0 0 20 20" fill="none"><rect x="3" y="9" width="14" height="2.5" rx="1.25" stroke="currentColor" stroke-width="1.5"/></svg>
+                </span>
+                متوسط
+              </li>
+              <li class="select__item" data-value="low">
+                <span class="select__item-icon">
+                  <svg viewBox="0 0 20 20" fill="none"><path d="M4 8L10 14L16 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                پایین
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-col">
+        <label>Primary + Icons</label>
+        <div class="select select--primary" data-type="primary" data-placeholder="نوع را انتخاب کنید">
+          <input type="hidden" name="type_primary_icon" />
+          <button class="select__trigger" type="button">
+            <span class="select__value">نوع را انتخاب کنید</span>
+          </button>
+          <div class="select__dropdown">
+            <ul class="select__list" role="listbox">
+              <li class="select__item select__item--selected" data-value="design">
+                <span class="select__item-icon">
+                  <svg viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="11" y="3" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="3" y="11" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="11" y="11" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
+                </span>
+                طراحی
+              </li>
+              <li class="select__item" data-value="development">
+                <span class="select__item-icon">
+                  <svg viewBox="0 0 20 20" fill="none"><path d="M6 7.5L3 10L6 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 7.5L17 10L14 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 5L8 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </span>
+                توسعه
+              </li>
+              <li class="select__item" data-value="marketing">
+                <span class="select__item-icon">
+                  <svg viewBox="0 0 20 20" fill="none"><path d="M4 14L4 10C4 6.7 6.7 4 10 4C13.3 4 16 6.7 16 10L16 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M2 12H6V16H2Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M14 12H18V16H14Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+                </span>
+                بازاریابی
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================
          Size Variants
          ========================================== -->
     <h2>اندازه‌ها — Sizes</h2>

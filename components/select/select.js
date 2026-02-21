@@ -40,6 +40,11 @@
     var items = list ? Array.prototype.slice.call(list.querySelectorAll('.select__item')) : [];
 
     var type = el.dataset.type || 'basic';   // basic | primary | multiple | tagify | icon
+
+    /* آیکن‌دار بودن: تشخیص خودکار از DOM یا data-type="icon" */
+    var hasIcons = !!(list && list.querySelector('.select__item-icon')) || type === 'icon';
+    if (type === 'icon') type = 'basic';   /* icon alias → basic (بدون search) */
+
     var isMulti = type === 'multiple' || type === 'tagify';
     var isFreeInput = (type === 'tagify') && el.dataset.freeInput === 'true';
     var placeholder = el.dataset.placeholder || 'انتخاب کنید';
@@ -67,6 +72,12 @@
 
     function getItemLabel(item) {
       return item.textContent.trim();
+    }
+
+    function getItemIcon(item) {
+      if (!item) return null;
+      var iconEl = item.querySelector('.select__item-icon');
+      return iconEl ? iconEl.innerHTML : null;
     }
 
     function findItemByValue(val) {
@@ -102,25 +113,43 @@
        ========================================== */
 
     function renderTrigger() {
-      /* حذف محتوای قبلی (به جز chevron) */
+      /* حذف محتوای قبلی (به جز chevron و آیکن ثابت) */
       var chevron = trigger.querySelector('.select__chevron');
+      var staticIcon = trigger.querySelector('.select__trigger-icon--static');
+      var staticDivider = trigger.querySelector('.select__trigger-divider--static');
       while (trigger.firstChild) trigger.removeChild(trigger.firstChild);
 
+      /* آیکن ثابت — همیشه اول، مستقل از آیتم انتخاب‌شده */
+      if (staticIcon) {
+        trigger.appendChild(staticIcon);
+        if (staticDivider) trigger.appendChild(staticDivider);
+      }
+
       if (type === 'basic') {
-        /* Basic: نمایش متن ساده */
-        var span = document.createElement('span');
-        span.className = 'select__value';
+        /* Basic: نمایش متن ساده (با پشتیبانی اختیاری از آیکن) */
         if (selectedValues.length > 0) {
           var item = findItemByValue(selectedValues[0]);
-          span.textContent = item ? getItemLabel(item) : selectedValues[0];
-          span.classList.add('select__value--selected');
-        } else {
-          span.textContent = placeholder;
-        }
-        trigger.appendChild(span);
 
-        /* دکمه پاک کردن — فقط وقتی مقداری انتخاب شده */
-        if (selectedValues.length > 0) {
+          /* آیکن پویا — فقط وقتی آیکن ثابت وجود ندارد */
+          if (hasIcons && !staticIcon) {
+            var iconHtml = getItemIcon(item);
+            if (iconHtml) {
+              var triggerIcon = document.createElement('span');
+              triggerIcon.className = 'select__trigger-icon';
+              triggerIcon.innerHTML = iconHtml;
+              trigger.appendChild(triggerIcon);
+              var divider = document.createElement('span');
+              divider.className = 'select__trigger-divider';
+              trigger.appendChild(divider);
+            }
+          }
+
+          var span = document.createElement('span');
+          span.className = 'select__value select__value--selected';
+          span.textContent = item ? getItemLabel(item) : selectedValues[0];
+          trigger.appendChild(span);
+
+          /* دکمه پاک کردن */
           var clearBtn = document.createElement('button');
           clearBtn.className = 'select__clear';
           clearBtn.type = 'button';
@@ -136,29 +165,12 @@
             if (onChange) onChange(null);
           });
           trigger.appendChild(clearBtn);
-        }
-      } else if (type === 'icon') {
-        /* Icon: نمایش آیکن + متن */
-        var iconSpan = document.createElement('span');
-        if (selectedValues.length > 0) {
-          var selItem = findItemByValue(selectedValues[0]);
-          var iconEl = selItem ? selItem.querySelector('.select__item-icon') : null;
-          if (iconEl) {
-            var triggerIcon = document.createElement('span');
-            triggerIcon.className = 'select__trigger-icon';
-            triggerIcon.innerHTML = iconEl.innerHTML;
-            trigger.appendChild(triggerIcon);
-            var divider = document.createElement('span');
-            divider.className = 'select__trigger-divider';
-            trigger.appendChild(divider);
-          }
-          iconSpan.className = 'select__value select__value--selected';
-          iconSpan.textContent = selItem ? getItemLabel(selItem) : selectedValues[0];
         } else {
-          iconSpan.className = 'select__value';
-          iconSpan.textContent = placeholder;
+          var span = document.createElement('span');
+          span.className = 'select__value';
+          span.textContent = placeholder;
+          trigger.appendChild(span);
         }
-        trigger.appendChild(iconSpan);
       } else {
         /* Primary / Multiple / Tagify: نمایش تگ‌ها */
         var tagsDiv = document.createElement('div');
@@ -223,6 +235,17 @@
       var tag = document.createElement('span');
       tag.className = 'select__tag ' + tagClass;
       tag.dataset.value = value;
+
+      /* آیکن آیتم در تگ — اگر hasIcons فعال باشد */
+      if (hasIcons) {
+        var iconHtml = getItemIcon(item);
+        if (iconHtml) {
+          var tagIcon = document.createElement('span');
+          tagIcon.className = 'select__tag-icon';
+          tagIcon.innerHTML = iconHtml;
+          tag.appendChild(tagIcon);
+        }
+      }
 
       var textSpan = document.createElement('span');
       textSpan.className = 'select__tag-text';
@@ -573,6 +596,7 @@
       updateActiveClass();
 
       renderTrigger();
+      if (hasIcons) el.classList.add('select--has-icons');
 
       /* Event listeners */
       trigger.addEventListener('click', onTriggerClick);

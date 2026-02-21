@@ -184,6 +184,16 @@
 .tooltip--dark .tooltip__bubble      { --_tooltip-bg: var(--tooltip-color-dark); }
 
 /* ==========================================
+   Mobile — در موبایل tooltip نمایش داده نمی‌شود
+   ========================================== */
+
+@media (hover: none), (max-width: 768px) {
+  .tooltip__bubble {
+    display: none;
+  }
+}
+
+/* ==========================================
    RTL / LTR Support
    ========================================== */
 
