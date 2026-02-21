@@ -1,0 +1,10 @@
+# Claude AI memory (private)
+.claude/
+
+# Windows artifacts
+nul
+Thumbs.db
+Desktop.ini
+
+# OS
+.DS_Store

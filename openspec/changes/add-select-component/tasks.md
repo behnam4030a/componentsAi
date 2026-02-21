@@ -1,0 +1,135 @@
+# تسک‌های پیاده‌سازی کامپوننت Select
+
+## 1. راه‌اندازی و ساختار
+- [x] 1.1 ایجاد دایرکتوری `/components/select/`
+- [x] 1.2 ایجاد فایل `tokens.json` با design tokens استخراج شده از Figma
+
+## 2. پیاده‌سازی CSS
+- [x] 2.1 ایجاد CSS custom properties از tokens.json
+  - [x] 2.1.1 متغیرهای رنگ neutral: background, foreground (text, title, disabled, placeholder), stroke (rest, hover, search, disabled)
+  - [x] 2.1.2 متغیرهای رنگ accent: primary (#8a38f5), background (rgba)
+  - [x] 2.1.3 متغیرهای رنگ tag: single (purple bg, text), multiple (gray bg, text)
+  - [x] 2.1.4 متغیرهای shadow, scrollbar
+  - [x] 2.1.5 متغیرهای typography (fontFamily, fontSize, fontWeight, lineHeight)
+  - [x] 2.1.6 متغیرهای radius, spacing, size
+- [x] 2.2 پیاده‌سازی استایل‌های پایه Trigger
+  - [x] 2.2.1 ساختار `.select` (wrapper) — position relative, width 320px
+  - [x] 2.2.2 ساختار `.select__trigger` — flex row, height 45px, border 1px solid, border-radius 8px, padding-x 8px, cursor pointer
+  - [x] 2.2.3 ساختار `.select__value` — متن مقدار انتخاب شده یا placeholder
+  - [x] 2.2.4 ساختار `.select__chevron` — آیکن فلش 16px, transition rotate
+  - [x] 2.2.5 ساختار `.select__tags` — flex row wrap, gap 4px
+  - [x] 2.2.6 ساختار `.select__tag` — flex row, align center, padding-x 6px, border-radius 4px, gap 4px
+  - [x] 2.2.7 ساختار `.select__tag-close` — آیکن حذف 12px, cursor pointer
+- [x] 2.3 پیاده‌سازی استایل‌های Dropdown
+  - [x] 2.3.1 ساختار `.select__dropdown` — position absolute, width 100%, border-radius 8px, shadow, padding 8px, z-index
+  - [x] 2.3.2 ساختار `.select__search` — فیلد جستجو, height 32px, border-radius 4px, border
+  - [x] 2.3.3 ساختار `.select__search-input` — input بدون border پیش‌فرض, width 100%
+  - [x] 2.3.4 ساختار `.select__list` — لیست آیتم‌ها, max-height با scroll
+  - [x] 2.3.5 ساختار `.select__item` — padding-x 5px, border-radius 4px, cursor pointer, gap 4px, lineHeight 2
+  - [x] 2.3.6 ساختار `.select__item--selected` — background accent, text accent
+  - [x] 2.3.7 ساختار `.select__item--highlighted` — hover state
+  - [x] 2.3.8 Scrollbar سفارشی — width 5px, thumb #d9d9d9, height 10px
+- [x] 2.4 پیاده‌سازی State Classes
+  - [x] 2.4.1 `.select--active` — border #8a38f5, shadow 0px 0px 4px rgba(138,56,245,0.5)
+  - [x] 2.4.2 `.select--open` — chevron rotate 180deg, dropdown visible
+  - [x] 2.4.3 `.select--disabled` — background #f1f3f5, text #bbbcbe, border #dddfe1, pointer-events none
+- [x] 2.5 پیاده‌سازی Type Variants
+  - [x] 2.5.1 `.select--basic` — نمایش value text, search input در dropdown
+  - [x] 2.5.2 `.select--primary` — نمایش tag بنفش (single), بدون search
+  - [x] 2.5.3 `.select--multiple` — نمایش tags خاکستری (multiple), بدون search
+  - [x] 2.5.4 `.select--tagify` — مشابه multiple, آیکن close-square
+- [x] 2.6 پیاده‌سازی Tag Styles
+  - [x] 2.6.1 `.select__tag--single` — bg rgba(138,56,245,0.05), text #8a38f5
+  - [x] 2.6.2 `.select__tag--multiple` — bg rgba(89,89,90,0.05), text #59595a
+- [x] 2.7 پیاده‌سازی Size Variants
+  - [x] 2.7.1 `.select--sm` — اندازه کوچک
+  - [x] 2.7.2 `.select--md` — اندازه متوسط (پیش‌فرض)
+  - [x] 2.7.3 `.select--lg` — اندازه بزرگ
+- [x] 2.8 پیاده‌سازی پشتیبانی RTL
+  - [x] 2.8.1 text-align و direction صحیح
+  - [x] 2.8.2 ترتیب المان‌ها در RTL (chevron سمت چپ، تگ‌ها سمت راست)
+  - [x] 2.8.3 پشتیبانی LTR با `dir="ltr"`
+- [x] 2.9 افزودن transition‌های نرم (dropdown open/close, hover, focus)
+
+## 3. پیاده‌سازی JavaScript
+- [x] 3.1 پیاده‌سازی Dropdown Toggle
+  - [x] 3.1.1 Event listener برای کلیک روی trigger
+  - [x] 3.1.2 Toggle class `select--open` و `select--active`
+  - [x] 3.1.3 تنظیم `aria-expanded`
+  - [x] 3.1.4 بستن dropdown با کلیک خارج از کامپوننت
+  - [x] 3.1.5 بستن dropdown با کلید Escape
+- [x] 3.2 پیاده‌سازی Item Selection
+  - [x] 3.2.1 کلیک روی آیتم — انتخاب/لغو انتخاب
+  - [x] 3.2.2 Single select (Basic/Primary) — فقط یک آیتم قابل انتخاب
+  - [x] 3.2.3 Multi select (Multiple/Tagify) — چند آیتم قابل انتخاب
+  - [x] 3.2.4 بروزرسانی trigger (متن یا تگ) پس از انتخاب
+  - [x] 3.2.5 تنظیم `aria-selected` روی آیتم‌ها
+- [x] 3.3 پیاده‌سازی Tag Management
+  - [x] 3.3.1 ایجاد تگ هنگام انتخاب آیتم (Primary/Multiple/Tagify)
+  - [x] 3.3.2 حذف تگ با کلیک روی close icon
+  - [x] 3.3.3 بروزرسانی لیست آیتم‌های انتخاب شده
+- [x] 3.4 پیاده‌سازی Search (Basic)
+  - [x] 3.4.1 فیلتر آیتم‌ها بر اساس متن جستجو
+  - [x] 3.4.2 نمایش/مخفی کردن آیتم‌ها
+  - [x] 3.4.3 Focus خودکار روی search input هنگام باز شدن dropdown
+  - [x] 3.4.4 پاک کردن جستجو هنگام بستن dropdown
+- [x] 3.5 پیاده‌سازی Keyboard Navigation
+  - [x] 3.5.1 Arrow Up/Down برای حرکت بین آیتم‌ها
+  - [x] 3.5.2 Enter برای انتخاب آیتم highlighted
+  - [x] 3.5.3 Escape برای بستن dropdown
+  - [x] 3.5.4 Tab برای خروج از کامپوننت
+  - [x] 3.5.5 تنظیم `aria-activedescendant`
+- [x] 3.6 پیاده‌سازی Select API
+  - [x] 3.6.1 تابع `Select.init(element)` برای فعال‌سازی
+  - [x] 3.6.2 تابع `Select.initAll()` برای فعال‌سازی همه select‌ها
+  - [x] 3.6.3 متد `getValue()` برای دریافت مقدار انتخاب شده
+  - [x] 3.6.4 متد `setValue(value)` برای تنظیم مقدار
+  - [x] 3.6.5 متد `open()` / `close()` برای کنترل dropdown
+  - [x] 3.6.6 Event callbacks: `onChange`, `onOpen`, `onClose`
+  - [x] 3.6.7 Cleanup event listeners هنگام destroy
+
+## 4. تست و دمو
+- [x] 4.1 ایجاد صفحه دمو (index.html) با مثال‌های جامع
+  - [x] 4.1.1 نمایش تمام تایپ‌ها (Basic, Primary, Multiple, Tagify)
+  - [x] 4.1.2 نمایش تمام وضعیت‌ها (Rest, Active, Selected, Disabled)
+  - [x] 4.1.3 نمایش تمام اندازه‌ها (Small, Medium, Large)
+  - [x] 4.1.4 نمایش عملکرد جستجو (Basic)
+  - [x] 4.1.5 نمایش عملکرد تگ‌ها (Primary, Multiple, Tagify)
+- [ ] 4.2 تست تایپ‌ها
+  - [ ] 4.2.1 Basic — متن ساده، جستجو، اسکرول
+  - [ ] 4.2.2 Primary — تگ بنفش تکی
+  - [ ] 4.2.3 Multiple — تگ‌های خاکستری چندگانه
+  - [ ] 4.2.4 Tagify — تگ‌ها با آیکن close-square
+- [ ] 4.3 تست وضعیت‌ها
+  - [ ] 4.3.1 Rest — border خاکستری، رنگ‌های پیش‌فرض
+  - [ ] 4.3.2 Active/Focused — border بنفش، shadow بنفش
+  - [ ] 4.3.3 Selected — نمایش مقدار انتخاب شده
+  - [ ] 4.3.4 Disabled — غیرفعال، رنگ‌های خاکستری
+- [ ] 4.4 تست Dropdown
+  - [ ] 4.4.1 باز/بسته شدن با کلیک
+  - [ ] 4.4.2 بسته شدن با کلیک خارج
+  - [ ] 4.4.3 بسته شدن با Escape
+  - [ ] 4.4.4 Shadow و border-radius صحیح
+- [ ] 4.5 تست Search
+  - [ ] 4.5.1 فیلتر آیتم‌ها
+  - [ ] 4.5.2 Focus خودکار
+  - [ ] 4.5.3 پاک شدن هنگام بسته شدن
+- [ ] 4.6 تست Tags
+  - [ ] 4.6.1 ایجاد تگ هنگام انتخاب
+  - [ ] 4.6.2 حذف تگ با کلیک close
+  - [ ] 4.6.3 استایل صحیح (بنفش/خاکستری)
+- [ ] 4.7 تست RTL
+  - [ ] 4.7.1 متن و ترتیب المان‌ها در RTL
+  - [ ] 4.7.2 متن و ترتیب المان‌ها در LTR
+- [ ] 4.8 تست دسترسی‌پذیری
+  - [ ] 4.8.1 role="listbox" و role="option"
+  - [ ] 4.8.2 aria-selected, aria-expanded, aria-haspopup
+  - [ ] 4.8.3 Keyboard navigation (Arrow, Enter, Escape, Tab)
+  - [ ] 4.8.4 Screen reader compatibility
+- [ ] 4.9 تست سازگاری مرورگرها (Chrome, Firefox, Safari, Edge)
+
+## 5. مستندات
+- [x] 5.1 مستندسازی CSS classes و نحوه استفاده (در index.html)
+- [x] 5.2 مثال‌های کد برای سناریوهای رایج (در index.html)
+- [x] 5.3 مستندسازی JavaScript API
+- [x] 5.4 ایجاد README.md

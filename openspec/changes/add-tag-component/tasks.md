@@ -1,0 +1,97 @@
+# تسک‌های پیاده‌سازی کامپوننت Tag
+
+## 1. راه‌اندازی و ساختار
+- [x] 1.1 ایجاد دایرکتوری `/components/tag/`
+- [x] 1.2 ایجاد فایل `tokens.json` با design tokens استخراج شده از Figma
+- [x] 1.3 ایجاد فایل `tag.css` برای استایل‌های کامپوننت
+
+## 2. پیاده‌سازی CSS
+- [x] 2.1 ایجاد CSS custom properties از tokens.json
+  - [x] 2.1.1 متغیرهای رنگ neutral/gray (background rest/hover، stroke، foreground)
+  - [x] 2.1.2 متغیرهای رنگ success/green (background rest/hover، stroke primary/secondary، foreground rest/hover)
+  - [x] 2.1.3 متغیرهای رنگ warning/orange (background rest/hover، stroke primary/secondary، foreground rest/hover)
+  - [x] 2.1.4 متغیرهای رنگ danger/red (background rest/hover، stroke primary/secondary، foreground rest/hover)
+  - [x] 2.1.5 متغیرهای disabled (background، stroke، foreground)
+  - [x] 2.1.6 متغیرهای focus (border)
+  - [x] 2.1.7 متغیرهای filled (border سفید)
+  - [x] 2.1.8 متغیرهای radius (rounded 8px، circular 360px)
+  - [x] 2.1.9 متغیرهای size (height، paddingX، gap، fontSize، lineHeight، iconWrapper) — 3 سایز
+  - [x] 2.1.10 متغیرهای typography (fontFamily، fontWeight)
+  - [x] 2.1.11 متغیرهای border (filled 2px، outline 1px)
+  - [x] 2.1.12 متغیرهای dismiss icon (24px)
+- [x] 2.2 پیاده‌سازی استایل‌های پایه کامپوننت
+  - [x] 2.2.1 ساختار `.tag` — inline-flex, items-center, justify-center, gap 4px, overflow clip
+  - [x] 2.2.2 ساختار `.tag__text` — shrink-0
+  - [x] 2.2.3 ساختار `.tag__icon` — shrink-0, centered icon, flex
+  - [x] 2.2.4 ساختار `.tag__dismiss` — button reset, shrink-0, cursor pointer, 24px, color inherit
+- [x] 2.3 پیاده‌سازی Modifiers — Size
+  - [x] 2.3.1 `.tag--small` — height 24px, px 8px, font 13px, line-height 1.3, icon 18px
+  - [x] 2.3.2 `.tag--medium` — height 32px, px 8px, font 14px, line-height 1.5, icon 18px
+  - [x] 2.3.3 `.tag--large` — height 37px, px 12px, font 16px, line-height 1.5, icon 22px
+- [x] 2.4 پیاده‌سازی Modifiers — Radius
+  - [x] 2.4.1 `.tag--rounded` — border-radius 8px
+  - [x] 2.4.2 `.tag--circular` — border-radius 360px
+- [x] 2.5 پیاده‌سازی Filled Style × Color × State
+  - [x] 2.5.1 `.tag--filled.tag--gray` — Rest (bg #f6f8fa), Hover (bg #f1f3f5)
+  - [x] 2.5.2 `.tag--filled.tag--green` — Rest (bg #f1faf1), Hover (bg #e7f2e7)
+  - [x] 2.5.3 `.tag--filled.tag--orange` — Rest (bg #fff9f5), Hover (bg #feefe7)
+  - [x] 2.5.4 `.tag--filled.tag--red` — Rest (bg #fdf3f4), Hover (bg #f9e7e9)
+  - [x] 2.5.5 `.tag--filled.tag--disabled` — bg #e7e9eb, border transparent, text #bbbcbe
+- [x] 2.6 پیاده‌سازی Outline Style × Color × State
+  - [x] 2.6.1 `.tag--outline.tag--gray` — Rest (border #e2e4e6), Hover (بدون تغییر)
+  - [x] 2.6.2 `.tag--outline.tag--green` — Rest (border #9fd89f), Hover (border #107c10, text #0c5e0c)
+  - [x] 2.6.3 `.tag--outline.tag--orange` — Rest (border #fdcfb4), Hover (border #f7630c, text #bc4b09)
+  - [x] 2.6.4 `.tag--outline.tag--red` — Rest (border #eeacb2), Hover (border #c50f1f, text #960b18)
+  - [x] 2.6.5 `.tag--outline.tag--disabled` — border #e7e9eb, text #bbbcbe
+- [x] 2.7 پیاده‌سازی Focus State
+  - [x] 2.7.1 `.tag--focused` — border 1px solid #222323 (هر دو style)
+  - [x] 2.7.2 Focus بدون تغییر layout
+  - [x] 2.7.3 Focus overlay: همزمان با rest/hover
+  - [x] 2.7.4 Focus در disabled غیرفعال (با :not(.tag--disabled))
+- [x] 2.8 پیاده‌سازی Disabled State
+  - [x] 2.8.1 Disabled — تمام رنگ‌ها به نسخه خنثی
+  - [x] 2.8.2 Disabled — جلوگیری از hover (با :not(.tag--disabled))
+  - [x] 2.8.3 Disabled — cursor default
+  - [x] 2.8.4 Disabled — dismiss icon نمایش ولی pointer-events none
+- [x] 2.9 پیاده‌سازی Dismiss Icon
+  - [x] 2.9.1 SVG آیکن × (close/remove) با currentColor
+  - [x] 2.9.2 رنگ dismiss icon = رنگ متن Tag (color inherit)
+  - [x] 2.9.3 اندازه 24px (ثابت)
+- [x] 2.10 پیاده‌سازی Trailing Icon
+  - [x] 2.10.1 Icon wrapper سایز بر اساس Tag size (22px/18px)
+  - [x] 2.10.2 رنگ آیکن = رنگ متن Tag (currentColor)
+- [x] 2.11 پشتیبانی RTL/LTR
+  - [x] 2.11.1 Flexbox direction سازگار با dir (inline-flex + padding-inline)
+  - [x] 2.11.2 ترتیب المان‌ها: dismiss → text → icon (در HTML)
+
+## 3. تست و دمو
+- [x] 3.1 ایجاد صفحه دمو (index.html) با مثال‌های جامع
+  - [x] 3.1.1 نمایش 4 رنگ × 2 استایل (Filled + Outline) — بخش‌های ۱ و ۲
+  - [x] 3.1.2 نمایش 3 سایز (Small, Medium, Large) — بخش ۳
+  - [x] 3.1.3 نمایش 2 شکل (Rounded, Circular) — بخش ۴
+  - [x] 3.1.4 نمایش تمام stateها (Rest, Hover, Focus, Disabled) — بخش‌های ۱ و ۲
+  - [x] 3.1.5 نمایش با dismiss icon — بخش ۵
+  - [x] 3.1.6 نمایش با trailing icon — بخش ۶
+  - [x] 3.1.7 نمایش ترکیبی (icon + dismiss) — بخش ۷
+  - [x] 3.1.8 نمایش LTR — بخش ۱۰
+- [ ] 3.2 تست حالت‌های تعاملی
+  - [ ] 3.2.1 Hover — تغییرات بصری
+  - [ ] 3.2.2 Focus — focus ring صحیح (overlay)
+  - [ ] 3.2.3 Disabled — عدم تعامل، رنگ‌های disabled
+  - [ ] 3.2.4 اولویت stateها: disabled > focus > hover > rest
+- [ ] 3.3 تست dismiss
+  - [ ] 3.3.1 نمایش/مخفی‌سازی dismiss icon
+  - [ ] 3.3.2 Dismiss icon در disabled
+- [ ] 3.4 تست RTL/LTR
+  - [ ] 3.4.1 ترتیب المان‌ها در RTL
+  - [ ] 3.4.2 ترتیب المان‌ها در LTR
+- [ ] 3.5 تست دسترسی‌پذیری
+  - [ ] 3.5.1 ناوبری با Tab (focus=true)
+  - [ ] 3.5.2 Dismiss با keyboard
+  - [ ] 3.5.3 کنتراست رنگ
+- [ ] 3.6 تست سازگاری مرورگرها (Chrome, Firefox, Safari, Edge)
+
+## 4. مستندات
+- [x] 4.1 ایجاد README.md با نحوه استفاده و مثال‌ها
+- [x] 4.2 مستندسازی CSS classes و API
+- [x] 4.3 مستندسازی ترکیبات رنگ/استایل/سایز

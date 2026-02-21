@@ -1,0 +1,110 @@
+# تسک‌های پیاده‌سازی کامپوننت Modal
+
+## 1. راه‌اندازی و ساختار
+- [x] 1.1 ایجاد دایرکتوری `/components/modal/`
+- [x] 1.2 ایجاد فایل `tokens.json` با design tokens استخراج شده از Figma
+
+## 2. پیاده‌سازی CSS
+- [ ] 2.1 ایجاد CSS custom properties از tokens.json
+  - [ ] 2.1.1 متغیرهای رنگ overlay: background gradient
+  - [ ] 2.1.2 متغیرهای رنگ header: background (#222323), foreground (#ffffff), iconHolder, closeIcon
+  - [ ] 2.1.3 متغیرهای رنگ body: background (#ffffff), foreground (primary, secondary, tertiary), stroke
+  - [ ] 2.1.4 متغیرهای رنگ divider, required, brand
+  - [ ] 2.1.5 متغیرهای shadow (container, buttonPrimary)
+  - [ ] 2.1.6 متغیرهای typography (fontFamily, title, label, placeholder, divider, button)
+  - [ ] 2.1.7 متغیرهای radius, spacing, size
+- [ ] 2.2 پیاده‌سازی Overlay
+  - [ ] 2.2.1 `.modal__overlay` — position fixed, inset 0, z-index بالا
+  - [ ] 2.2.2 گرادیانت: از rgba(0,0,0,0.05) تا rgba(34,35,35,0.3)
+  - [ ] 2.2.3 انیمیشن fade-in/fade-out
+- [ ] 2.3 پیاده‌سازی Container (دسکتاپ)
+  - [ ] 2.3.1 `.modal__container` — position fixed, سمت راست، عرض 500px
+  - [ ] 2.3.2 ارتفاع: تمام viewport با فاصله 16px از بالا و پایین
+  - [ ] 2.3.3 padding داخلی 4px (ایجاد فاصله بین هدر/بدنه و لبه‌ها)
+  - [ ] 2.3.4 border-radius 8px
+  - [ ] 2.3.5 shadow: -3px 0px 5px 0px rgba(0,0,0,0.1)
+  - [ ] 2.3.6 انیمیشن slide-in از راست / slide-out به راست
+- [ ] 2.4 پیاده‌سازی Header
+  - [ ] 2.4.1 `.modal__header` — پس‌زمینه #222323, padding 24px
+  - [ ] 2.4.2 `.modal__close` — آیکن × سایز 24px, سمت چپ (RTL), cursor pointer
+  - [ ] 2.4.3 `.modal__title-block` — flex row-reverse (RTL), align center, gap 16px
+  - [ ] 2.4.4 `.modal__title` — فونت SemiBold (600), سایز 20px, رنگ سفید
+  - [ ] 2.4.5 `.modal__icon-holder` — مربع 54px, پس‌زمینه #2c2d2d, border #454546, radius 8px
+  - [ ] 2.4.6 border-radius بالای header (چون داخل container با padding 4px است)
+- [ ] 2.5 پیاده‌سازی Body
+  - [ ] 2.5.1 `.modal__body` — پس‌زمینه #ffffff, padding 24px, flex-grow 1
+  - [ ] 2.5.2 `.modal__content` — overflow-y auto, flex-grow 1
+  - [ ] 2.5.3 `.modal__actions` — دکمه‌های عملیاتی, عرض کامل
+  - [ ] 2.5.4 border-radius پایین body
+  - [ ] 2.5.5 اسکرول‌بار سفارشی برای محتوا
+- [ ] 2.6 پیاده‌سازی Size Variants
+  - [ ] 2.6.1 `.modal--sm` — عرض 400px (دسکتاپ)
+  - [ ] 2.6.2 `.modal--md` — عرض 500px (پیش‌فرض)
+  - [ ] 2.6.3 `.modal--lg` — عرض 600px (دسکتاپ)
+- [ ] 2.7 پیاده‌سازی State Classes
+  - [ ] 2.7.1 `.modal--open` — نمایش مودال و overlay
+  - [ ] 2.7.2 `.modal--closing` — انیمیشن بسته شدن
+- [ ] 2.8 پیاده‌سازی نسخه موبایل (breakpoint < 768px)
+  - [ ] 2.8.1 Container: عرض 100%, از پایین صفحه وارد شود
+  - [ ] 2.8.2 هدر padding: افقی 16px، عمودی 24px
+  - [ ] 2.8.3 بدنه padding: 16px
+  - [ ] 2.8.4 عنوان: فونت Medium (500), سایز 18px
+  - [ ] 2.8.5 انیمیشن slide-up از پایین / slide-down به پایین
+  - [ ] 2.8.6 ارتفاع بسته به حجم محتوا (نه تمام صفحه)
+- [ ] 2.9 پیاده‌سازی RTL Support
+  - [ ] 2.9.1 مودال دسکتاپ از سمت راست وارد شود
+  - [ ] 2.9.2 دکمه بستن سمت چپ هدر (RTL)
+  - [ ] 2.9.3 ترتیب المان‌ها و متن فارسی صحیح
+- [ ] 2.10 انیمیشن‌ها و transition‌ها
+  - [ ] 2.10.1 Overlay: fade-in 300ms / fade-out 300ms
+  - [ ] 2.10.2 Container دسکتاپ: slide-in از راست 300ms / slide-out 300ms
+  - [ ] 2.10.3 Container موبایل: slide-up از پایین 300ms / slide-down 300ms
+
+## 3. پیاده‌سازی JavaScript
+- [ ] 3.1 پیاده‌سازی Open/Close
+  - [ ] 3.1.1 `Modal.open(id)` — باز کردن مودال با id
+  - [ ] 3.1.2 `Modal.close(id)` — بسته کردن مودال با id
+  - [ ] 3.1.3 `Modal.closeAll()` — بستن همه مودال‌ها
+  - [ ] 3.1.4 اضافه/حذف کلاس `modal--open` و `modal--closing`
+  - [ ] 3.1.5 مدیریت انیمیشن بسته شدن (صبر برای پایان transition سپس حذف کلاس‌ها)
+- [ ] 3.2 پیاده‌سازی Overlay Click
+  - [ ] 3.2.1 کلیک روی overlay مودال را می‌بندد
+  - [ ] 3.2.2 کلیک روی container مودال را نمی‌بندد (stopPropagation)
+- [ ] 3.3 پیاده‌سازی Close Button
+  - [ ] 3.3.1 Event listener روی دکمه `.modal__close`
+  - [ ] 3.3.2 بستن مودال مربوطه
+- [ ] 3.4 پیاده‌سازی Keyboard Support
+  - [ ] 3.4.1 کلید Escape مودال را می‌بندد
+  - [ ] 3.4.2 فقط آخرین مودال باز بسته شود (در صورت چند مودال)
+- [ ] 3.5 پیاده‌سازی Focus Trap
+  - [ ] 3.5.1 فوکوس در مودال باز محدود شود
+  - [ ] 3.5.2 Tab و Shift+Tab بین المان‌های focusable داخل مودال بچرخد
+  - [ ] 3.5.3 فوکوس اولیه روی اولین المان focusable
+  - [ ] 3.5.4 بازگشت فوکوس به المان trigger هنگام بسته شدن
+- [ ] 3.6 پیاده‌سازی Body Lock
+  - [ ] 3.6.1 هنگام باز بودن مودال اسکرول صفحه قفل شود
+  - [ ] 3.6.2 هنگام بسته شدن اسکرول آزاد شود
+  - [ ] 3.6.3 مدیریت صحیح scrollbar width (جلوگیری از layout shift)
+- [ ] 3.7 پیاده‌سازی Responsive Detection
+  - [ ] 3.7.1 تشخیص عرض صفحه (breakpoint 768px)
+  - [ ] 3.7.2 تغییر خودکار رفتار/ظاهر بین دسکتاپ و موبایل
+- [ ] 3.8 پیاده‌سازی ARIA Attributes
+  - [ ] 3.8.1 `role="dialog"` روی container
+  - [ ] 3.8.2 `aria-modal="true"` روی container
+  - [ ] 3.8.3 `aria-labelledby` اشاره به عنوان مودال
+  - [ ] 3.8.4 `aria-label="بستن"` روی دکمه close
+- [ ] 3.9 پیاده‌سازی Event Callbacks
+  - [ ] 3.9.1 `onOpen` callback
+  - [ ] 3.9.2 `onClose` callback
+  - [ ] 3.9.3 Auto-init تمام مودال‌ها هنگام DOMContentLoaded
+
+## 4. تست و دمو
+- [ ] 4.1 ایجاد صفحه دمو (index.html) با مثال‌های جامع
+  - [ ] 4.1.1 نمایش سایزهای مختلف (Small, Medium, Large)
+  - [ ] 4.1.2 نمایش مودال با محتوای فرم (input, select, textarea)
+  - [ ] 4.1.3 نمایش مودال با محتوای طولانی (اسکرول)
+  - [ ] 4.1.4 دکمه‌های تست باز/بسته کردن
+  - [ ] 4.1.5 تست responsive (دسکتاپ و موبایل)
+- [ ] 4.2 اضافه کردن modal به index اصلی پروژه
+  - [ ] 4.2.1 لینک CSS و JS مودال
+  - [ ] 4.2.2 یک مثال ساده از مودال
